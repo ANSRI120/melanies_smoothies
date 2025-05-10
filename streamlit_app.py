@@ -2,6 +2,7 @@
 import streamlit as st
 import requests
 import requests
+import pandas
 
 #from snowflake.snowpark.context import get_active_session
 from snowflake.snowpark.functions import col
