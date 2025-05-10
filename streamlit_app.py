@@ -49,11 +49,12 @@ if ing_list:
     for i in ing_list:
         ing_string += i + ' '
         search_on=pd_df.loc[pd_df['FRUIT_NAME'] == fruit_chosen, 'SEARCH_ON'].iloc[0]
-        st.write('The search value for ', fruit_chosen,' is ', search_on, '.')
-        smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/watermelon")
+       #st.write('The search value for ', fruit_chosen,' is ', search_on, '.')
+        st.subheader('fruit_chosen' + "  Nitrution Information ")
+        smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/watermelon" + search_on)
        #st.text(smoothiefroot_response.json())
         sf_df = st.dataframe(data = smoothiefroot_response.json(), use_container_width = True) 
-        st.subheader('fruit_chosen' + "  Nitrution Information ")
+        #st.subheader('fruit_chosen' + "  Nitrution Information ")
     #st.write(ing_string)
     my_insert_stmt = """ insert into smoothies.public.orders(ingredients, NAME_ON_ORDER)
             values ('""" + ing_string + """' , '""" + name_on_order + """')"""
@@ -67,4 +68,5 @@ if ing_list:
         #st.success('Your Smoothie is ordered, ' + name_on_order + '!', icon="✅")
 
 #new section to display smoohyfroot nutritional input
+
 
