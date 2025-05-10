@@ -31,10 +31,7 @@ my_dataframe = session.table ('smoothies.public.fruit_options').select(col('FRUI
 #st.dataframe (data = my_dataframe, use_container_width = True)
 
 ##multiselect
-ing_list = st.multiselect(
-    'Choose up to 5 Fruits: ',
-    my_dataframe,
-    max_selections= )
+ing_list = st.multiselect('Choose up to 5 Fruits: ', my_dataframe, max_selections= 5)
 
 if ing_list:
     ##st.write(ing_list)
