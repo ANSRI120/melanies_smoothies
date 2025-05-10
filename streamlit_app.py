@@ -43,15 +43,11 @@ st.dataframe (pd_df)
 ing_list = st.multiselect('Choose up to 5 Fruits: ', my_dataframe, max_selections= 5)
 
 if ing_list:
-    ##st.write(ing_list)
-    ##st.text(ing_list) ----> Below for loop we are using, so no need of these
-##converting list to string->create a variable->make sure PY thinks it contains a string
     ing_string = ''
     for i in ing_list:
         ing_string += i + ' '
         search_on=pd_df.loc[pd_df['FRUIT_NAME'] == i, 'SEARCH_ON'].iloc[0]
-       #st.write('The search value for ', fruit_chosen,' is ', search_on, '.')
-        st.subheader('fruit_chosen' + "  Nitrution Information ")
+        st.subheader(i + "  Nitrution Information ")
         smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/watermelon" + search_on)
        #st.text(smoothiefroot_response.json())
         sf_df = st.dataframe(data = smoothiefroot_response.json(), use_container_width = True) 
