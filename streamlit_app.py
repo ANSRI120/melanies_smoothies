@@ -55,4 +55,4 @@ if ing_list:
 #new section to display smoohyfroot nutritional input
 import requests
 smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/watermelon")
-st.text(smoothiefroot_response)
+st.text(smoothiefroot_response.json())
