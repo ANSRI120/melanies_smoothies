@@ -26,7 +26,7 @@ st.dataframe (pd_df)
 
 ing_list = st.multiselect('Choose up to 5 Fruits: ',
                           my_dataframe, 
-                          max_selections= 5)
+                          max_selections= 6)
 
 if ing_list:
     ing_string = ''
