@@ -1,5 +1,8 @@
 # Import python packages
 import streamlit as st
+import requests
+import requests
+
 #from snowflake.snowpark.context import get_active_session
 from snowflake.snowpark.functions import col
 
@@ -40,6 +43,9 @@ if ing_list:
     ing_string = ''
     for i in ing_list:
         ing_string += i + ' '
+        smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/watermelon")
+       #st.text(smoothiefroot_response.json())
+        sf_df = st.dataframe(data = smoothiefroot_response.json(), use_container_width = True) 
     #st.write(ing_string)
     my_insert_stmt = """ insert into smoothies.public.orders(ingredients, NAME_ON_ORDER)
             values ('""" + ing_string + """' , '""" + name_on_order + """')"""
@@ -48,12 +54,9 @@ if ing_list:
     #st.stop()
     time_to_insert = st.button('SUBMIT YOUR ORDER')
 
-    if time_to_insert:
-        session.sql(my_insert_stmt).collect()
-        st.success('Your Smoothie is ordered, ' + name_on_order + '!', icon="✅")
+    #if time_to_insert:
+        #session.sql(my_insert_stmt).collect()
+        #st.success('Your Smoothie is ordered, ' + name_on_order + '!', icon="✅")
 
 #new section to display smoohyfroot nutritional input
-import requests
-smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/watermelon")
-#st.text(smoothiefroot_response.json())
-sf_df = st.dataframe(data = smoothiefroot_response.json(), use_container_width = True) 
+
